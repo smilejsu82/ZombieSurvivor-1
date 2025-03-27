@@ -113,12 +113,19 @@ public class Gun : MonoBehaviour
             MuzzleFlashEffect.Play();
             ShellEjectEffect.Play();
             CurrMaggerzin--;
+
+            Debug.Log($"<color=yellow>{hit.collider.gameObject.name}</color>");
+
             IDamageable target = hit.collider.GetComponent<IDamageable>();
-            Debug.Log(target);
-            if (target != null)
+
+            Zombie zombie = target as Zombie;
+
+            Debug.Log($"<color=lime>zombie: {zombie}</color>");
+
+            if (zombie != null)
             {
                 Debug.Log($"목표물에 부딫혔습니다 {hit.transform.position}");
-                target.OnDamage(Damage, hit.point, hit.normal);
+                zombie.OnDamage(Damage, hit.point, hit.normal);
             }
            
             transform.LookAt(hit.transform);

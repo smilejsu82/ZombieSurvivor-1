@@ -30,7 +30,7 @@ public class Zombie : LivingEntity
     void Update()
     {
         StartCoroutine(Move());
-        Debug.Log(target);
+        //Debug.Log(target);
         
     }
     private void OnTriggerEnter(Collider other)
@@ -56,8 +56,11 @@ public class Zombie : LivingEntity
     }
     public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
+        Debug.Log($"<color=yellow>OnDamage: {damage}</color>");
+        Debug.Log($"<color=yellow>OnDamage: {this.health}</color>");
         base.OnDamage(damage, hitPoint, hitNormal);
-        
+        Debug.Log($"<color=yellow>OnDamage: {this.health}</color>");
+
     }
     public IEnumerator Move()
     {
