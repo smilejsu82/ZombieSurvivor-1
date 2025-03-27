@@ -1,6 +1,8 @@
 using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerControll : MonoBehaviour
@@ -8,11 +10,11 @@ public class PlayerControll : MonoBehaviour
     public float moveSpeed = 5f;
     public float turnSpeed = 20f;
     public Rigidbody rigidbody;
-    public Animator animator;
-    //public Transform GunPivat;
-    //public Transform LeftHandle;
-    //public Transform RightHandle;
-    // Start is called before the first frame update
+    public GameObject animator;
+    public LivingEntity livingEntity;
+    public float LastHitTime;
+    public float delay = 2.0f;
+
     void Start()
     {
         
@@ -37,8 +39,22 @@ public class PlayerControll : MonoBehaviour
         //턴을 하는 방향을 플레이어 기준 x좌표로 턴 속도 만큼 시간을 곱한다
         float turn = dir.x * turnSpeed * Time.deltaTime;
         this.transform.rotation *= Quaternion.Euler(0, turn, 0);
-
-        animator.SetFloat("Move", dir.z);
+        rigidbody.angularVelocity = new Vector3(0, 0, 0);
+        animator.GetComponent<Animator>().SetFloat("Move", dir.z);
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (Time.time > LastHitTime + delay)
+        {
+            LastHitTime = Time.time;
+            StartCoroutine(Hit());
+        }
+        
+    }
+    public IEnumerator Hit()
+    {
+        livingEntity.OnDamage(30f, transform.position,transform.position);
+        yield return new WaitForSeconds(1.0f);
     }
 }
 
