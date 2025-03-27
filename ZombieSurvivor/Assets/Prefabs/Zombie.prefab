@@ -604,8 +604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350050216950682}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000281143, y: -0.000000032334356, z: 0.000000017142156,
-    w: 1}
+  m_LocalRotation: {x: 0.0000000281143, y: -0.000000032334356, z: 0.000000017142156, w: 1}
   m_LocalPosition: {x: 8.265488e-11, y: 0.00060854503, z: -3.7252905e-12}
   m_LocalScale: {x: 0.99999994, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -732,8 +731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402984838011230}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000433065, y: 0.000000047963113, z: -0.000000049694798,
-    w: 1}
+  m_LocalRotation: {x: -0.0000000433065, y: 0.000000047963113, z: -0.000000049694798, w: 1}
   m_LocalPosition: {x: -1.3511454e-10, y: 0.0006157818, z: 8.381904e-12}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -786,7 +784,6 @@ GameObject:
   - component: {fileID: 65406100665674784}
   - component: {fileID: 136548243746957650}
   - component: {fileID: 82526441083327474}
-  - component: {fileID: 114480822159471870}
   - component: {fileID: 195116110769306434}
   m_Layer: 0
   m_Name: Zombie
@@ -974,27 +971,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114480822159471870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1425826839608082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a095f1f0a008d74b934926d27d0c900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 100
-  whatIsTarget:
-    serializedVersion: 2
-    m_Bits: 512
-  hitEffect: {fileID: 198259142730656782}
-  deathSound: {fileID: 8300000, guid: b86f03005ed394911b43027aeaaedeb7, type: 3}
-  hitSound: {fileID: 8300000, guid: c3d8accfc053f004ca665a1c8c4a6919, type: 3}
-  damage: 20
-  timeBetAttack: 0.5
 --- !u!195 &195116110769306434
 NavMeshAgent:
   m_ObjectHideFlags: 0

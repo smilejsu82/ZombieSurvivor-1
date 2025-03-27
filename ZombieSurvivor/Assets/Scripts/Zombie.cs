@@ -13,9 +13,15 @@ public class Zombie : LivingEntity
     public float LastFindDelay;
     public float speed;
     public bool isDie = false;
-    public int hp = 50000;
+    public float hp = 50000;
+    public float LastattackTime;
 
     // Start is called before the first frame update
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        health = hp;
+    }
     void Start()
     {
         
@@ -24,7 +30,7 @@ public class Zombie : LivingEntity
     void Update()
     {
         StartCoroutine(Move());
-       
+        Debug.Log(target);
         
     }
     private void OnTriggerEnter(Collider other)
@@ -51,6 +57,7 @@ public class Zombie : LivingEntity
     public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         base.OnDamage(damage, hitPoint, hitNormal);
+        
     }
     public IEnumerator Move()
     {
@@ -65,8 +72,8 @@ public class Zombie : LivingEntity
                 }
                 if (Time.time >= 10f)
                 {
-                    speed = navMeshAgent.speed;
-                    navMeshAgent.speed += 0.001f;
+                    //speed = navMeshAgent.speed;
+                    //navMeshAgent.speed += 0.001f;
                 }
             }
             else
@@ -88,5 +95,19 @@ public class Zombie : LivingEntity
                 yield return new WaitForSeconds(0.25f);
         }
         
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (Time.time > LastattackTime + FindDelay +1.0f)
+        {
+            LastattackTime = Time.time;
+            StartCoroutine(Hit());
+        }
+
+    }
+    public IEnumerator Hit()
+    {
+        target.OnDamage(30f, this.transform.position, this.transform.position);
+        yield return new WaitForSeconds(1.0f);
     }
 }

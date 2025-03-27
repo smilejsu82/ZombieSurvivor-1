@@ -4,18 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : LivingEntity
+public class ZombieHealth : LivingEntity
 {
     public Slider healthslider;
     public AudioClip deathClip;
     public AudioClip hitClip;
+    public AudioSource ZombieAudioSorce;
     //public AudioClip itemPickupClip;
-    public GameObject gameOver;
-
-    public AudioSource playeraudiosource;
-    public Animator playeranimator;
-    public PlayerControll playerControll;
-    public Gun playershooter;
 
     protected override void OnEnable()
     {
@@ -24,10 +19,6 @@ public class PlayerHealth : LivingEntity
         healthslider.enabled = true;
         healthslider.maxValue = startingHealth;
         healthslider.value = health;
-        playeranimator.enabled = true;
-        playerControll.enabled = true;
-        playershooter.enabled = true;
-        gameOver.SetActive(false);
     }
 
     public override void RestoreHealth(float newHealth)
@@ -38,10 +29,10 @@ public class PlayerHealth : LivingEntity
 
     public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
-        
+
         if (!dead)
         {
-            playeraudiosource.PlayOneShot(hitClip);
+            ZombieAudioSorce.PlayOneShot(hitClip);
         }
         base.OnDamage(damage, hitPoint, hitNormal);
         healthslider.value = health;
@@ -51,10 +42,6 @@ public class PlayerHealth : LivingEntity
         base.Die();
         healthslider.gameObject.SetActive(false);
 
-        playeraudiosource.PlayOneShot(deathClip);
-        playeranimator.SetTrigger("IsDie");
-        playerControll.enabled = false;
-        playershooter.enabled = false;
-        gameOver.SetActive(true);
+        ZombieAudioSorce.PlayOneShot(deathClip);
     }
 }

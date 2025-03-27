@@ -42,19 +42,6 @@ public class PlayerControll : MonoBehaviour
         rigidbody.angularVelocity = new Vector3(0, 0, 0);
         animator.GetComponent<Animator>().SetFloat("Move", dir.z);
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (Time.time > LastHitTime + delay)
-        {
-            LastHitTime = Time.time;
-            StartCoroutine(Hit());
-        }
-        
-    }
-    public IEnumerator Hit()
-    {
-        livingEntity.OnDamage(30f, transform.position,transform.position);
-        yield return new WaitForSeconds(1.0f);
-    }
+    
 }
 
